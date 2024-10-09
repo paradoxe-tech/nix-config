@@ -65,14 +65,24 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    git
+    kitty
+
+    # base software
     (opera.override { proprietaryCodecs = true; })
     discord
     obsidian
-    vscodium
-    git
-    kitty
+    
     rstudio
     gramps
+
+    (vscode-with-extensions.override {
+      vscode = vscodium;
+      vscodeExtensions = with vscode-extensions; [
+        bbenoist.nix
+        ms-python.python
+      ];
+    })
   ];
   
   nixpkgs.config.permittedInsecurePackages = [
@@ -80,7 +90,7 @@
   ];
   
   boot.extraModulePackages = with pkgs.linuxKernel.packages.linux_6_1; [
-     rtl88x2bu # driver for wlan USB
+    rtl88x2bu # driver for wlan USB
   ];
 
   system.stateVersion = "23.11";
