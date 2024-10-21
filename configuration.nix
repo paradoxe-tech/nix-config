@@ -72,8 +72,10 @@
     (opera.override { proprietaryCodecs = true; })
     discord
     obsidian
+    bitwarden
     
     rstudio
+    tor
     gramps
 
     (vscode-with-extensions.override {
