@@ -7,6 +7,7 @@
     ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -29,10 +30,11 @@
   services.xserver.enable = true;
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
+  
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-
 
   services.xserver = {
     layout = "fr";
@@ -72,11 +74,15 @@
     (opera.override { proprietaryCodecs = true; })
     discord
     obsidian
-    bitwarden
+    firefox
     
     rstudio
     tor
     gramps
+    
+    jdk
+    nodejs
+    pdfstudio2023
 
     (vscode-with-extensions.override {
       vscode = vscodium;
